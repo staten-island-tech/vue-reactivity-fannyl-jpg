@@ -8,6 +8,15 @@
 export default {
   name: "Home",
   components: {},
+  data() {
+    return {
+      student: "Harry",
+    };
+  },
 };
 </script>
-<style></style>
+<style scoped>
+h1 {
+  color: red;
+}
+</style>
