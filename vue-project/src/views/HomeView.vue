@@ -1,22 +1,9 @@
-<template>
-  <div class="home">
-    <h1>Hello</h1>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "Home",
-  components: {},
-  data() {
-    return {
-      student: "Harry",
-    };
-  },
-};
+<script setup>
+import TheWelcome from '../components/TheWelcome.vue'
 </script>
-<style scoped>
-h1 {
-  color: red;
-}
-</style>
+
+<template>
+  <main>
+    <TheWelcome />
+  </main>
+</template>
