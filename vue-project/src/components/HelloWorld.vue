@@ -4,6 +4,10 @@ defineProps({
     type: String,
     required: true,
   },
+  list: {
+    type: Array,
+    required: true,
+  },
 });
 </script>
 
