@@ -25,4 +25,8 @@ export default {
   },
   methods: {},
 };
+fetch("https://www.fruityvice.com/api/fruit/banana")
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error));
 </script>
