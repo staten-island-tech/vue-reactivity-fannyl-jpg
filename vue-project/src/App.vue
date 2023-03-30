@@ -4,7 +4,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img
       alt="Vue logo"
       class="logo"
@@ -22,8 +22,11 @@ import HelloWorld from "./components/HelloWorld.vue";
       </nav>
     </div>
   </header>
-
-  <RouterView />
+ -->
+  <!-- <div> -->
+    <h1>Products</h1>
+    <div v-for="product in products" :key="product.name"></div>
+  </div>
 </template>
 
 <style scoped>
