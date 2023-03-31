@@ -1,10 +1,9 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
+<script setup></script>
+/* import { RouterLink, RouterView } from "vue-router"; import HelloWorld from
+"./components/HelloWorld.vue"; */
 
 <template>
-  <!-- <header>
+  <!--  <header>
     <img
       alt="Vue logo"
       class="logo"
@@ -21,14 +20,24 @@ import HelloWorld from "./components/HelloWorld.vue";
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
- -->
-  <!-- <div> -->
-    <h1>Products</h1>
-    <div v-for="product in products" :key="product.name"></div>
+  </header> -->
+  <div>
+    <h2>{{ title }}</h2>
+    img src="" alt="" />
+    <p>{{ description }}</p>
   </div>
 </template>
 
+<script>
+export default {
+  name: "Card",
+  props: {
+    title: String,
+    description: String,
+    image: String,
+  },
+};
+</script>
 <style scoped>
 header {
   line-height: 1.5;
