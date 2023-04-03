@@ -1,85 +1,159 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "./components/HelloWorld.vue";
+import Products from "./components/ShoppingProducts.vue";
+import Cart from "./components/ShoppingCart.vue";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div>
+    <header>
+      <button v-on:click="navigateTo('products')">View products</button>
+      {{ cart.length }} in cart
+      <button v-on:click="navigateTo('cart')">View Cart</button>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <div v-if="page === 'cart'">
+      <Cart v-on:removeItemFromCart="removeItemFromCart" :cart="cart" />
     </div>
-  </header>
 
-  <RouterView />
+    <div v-if="page === 'products'">
+      <Products v-on:addItemToCart="addItemToCart" />
+    </div>
+  </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+  data: () => {
+    return {
+      page: "products",
+      cart: [],
+    };
+  },
+  methods: {
+    addItemToCart(product) {
+      this.cart.push(product);
+    },
+    removeItemFromCart(product) {
+      this.cart.splice(this.cart.indexOf(product), 1);
+    },
+    navigateTo(page) {
+      this.page = page;
+    },
+  },
+  components: { Products, Cart },
+};
+</script>
+
+<style>
+body {
+  margin: 0;
+}
+.products {
+  display: grid;
+  display: flex;
+}
+.products button {
+  padding: 100px;
+  background-color: black;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+</style>
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+   margin: 10px;
+  padding: 20px;
+  box-shadow: 2px 2px 5px blue;
+  background-color: pink;
+  text-align: right;
+  font-size: 30px;
+  padding-top: 0px;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+header button {
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: green;
 }
 </style>
+
+@media only screen and (max-width: 812px) {
+  .col {
+    max-width: 100%;
+    flex: 100%;
+    margin-top: 10% ;
+  }
+  
+  #image {
+    padding: 10px auto;
+    margin: auto;
+    border-radius: 30px;
+    width: 914px;
+    height: 610px;
+    align-items: center;
+    display: block;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+}  
+
+@media only screen and (min-device-width: 768px) {
+  .col {
+    margin: auto;
+    padding: 5px 5px;
+    background: #D4D5D3;
+    box-shadow: 10px 10px 5px #555756;
+    width: 25%;
+    font-size: .5rem;
+    flex: 50%;
+    max-width: 40%;
+    margin-top:50 px;
+    flex-direction: column;
+  }
+  
+  #image {
+    padding: 10px auto;
+    margin: auto;
+    border-radius: 30px;
+    width: 914px;
+    height: 610px;
+    align-items: center;
+    display: block;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+}
+
+  @media screen and (min-device-width: 1200px) {
+    .col {
+      margin: auto;
+      padding: 5px 5px;
+      background: #D4D5D3;
+      box-shadow: 10px 10px 5px #555756;
+      width: 20%;
+      font-size: .5rem;
+      flex: 25%;
+      max-width: 25%;
+      margin-top: 20 px;
+      flex-direction: column;
+    }
+    
+    #image {
+      padding: 10px auto;
+      margin: auto;
+      border-radius: 30px;
+      width: 914px;
+      height: 610px;
+      align-items: center;
+      display: block;
+      flex-wrap: wrap;
+      max-width: 100%;
+    }
+  }
